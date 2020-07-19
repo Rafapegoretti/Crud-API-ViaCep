@@ -1,0 +1,80 @@
+﻿@model IEnumerable<Aula2Asp.net.Models.Endereco>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <title>Busca CEP - Rafael Pegoretti</title>
+</head>
+<body>
+    <div class="container" style="padding:25px">
+        <h1>Consulta e cadastro CEP</h1>
+    </div>
+
+    <div class="container form-inline" style="margin-top:25px">
+        <form asp-action="PesquisarCEP" asp-controller="Endereco">
+            <input type="text" placeholder="Digite o CEP: " id="txtCep" name="txtCep" class="form-control col-8" />
+            &nbsp;
+            <input type="submit" value="Consultar" class="btn btn-sm btn-secondary form-control col-4" />
+        </form>
+    </div>
+
+    <div class="container" style="padding:25px">
+        <table class="table table-bordered table-sm table-striped">
+            <thead>
+                <tr>
+                    <th>cep</th>
+                    <th>Logradouro</th>
+                    <th>Complemento</th>
+                    <th>Bairro</th>
+                    <th>Localidade</th>
+                    <th>Uf</th>
+                    <th>Remover</th>
+                    <th>Atualizar</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @if (Model == null)
+                {
+                    <tr>
+                        <td colspan="7" class="text-center">Nenhum registro para apresentar!</td>
+                    </tr>
+                }
+                else
+                {
+                    @foreach (var e in Model)
+                    {
+                        <tr>
+                            <td>@e.Cep</td>
+                            <td>@e.Logradouro</td>
+                            <td>@e.Complemento</td>
+                            <td>@e.Bairro</td>
+                            <td>@e.Localidade</td>
+                            <td>@e.Uf</td>
+                            <td>
+                                <button asp-action="Remover" asp-controller="Endereco" asp-route-id="@e.CepId" class="btn btn-danger">
+                                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7z" />
+                                    </svg>
+                                </button>
+                            </td>
+                            <td>
+                                <button asp-action="Atualizar" asp-controller="Endereco" class="btn btn-warning">
+                                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil-square" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                                    </svg>
+                                </button>
+                            </td>
+
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>
