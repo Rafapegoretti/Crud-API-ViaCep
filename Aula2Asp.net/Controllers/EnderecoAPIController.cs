@@ -19,32 +19,40 @@ namespace Aula2Asp.net.Controllers
             _enderecoDAO = enderecoDAO;
         }
 
-        //GET: api/Endereco/Listar
+        //GET: api/Endereco/ListarEnderecos
         [HttpGet]
-        [Route("Listar")]
+        [Route("ListarEnderecos")]
         public IActionResult listar()
         {
             return Ok(_enderecoDAO.Listar());
         }
 
-        //POST: api/Endereco/Cadastrar
+        //POST: api/Endereco/CadastrarEndereco
         [HttpPost]
-        [Route("Cadastrar")]
+        [Route("CadastrarEndereco")]
         public IActionResult Cadastrar(Endereco endereco)
         {
             _enderecoDAO.Cadastrar(endereco);
             return Created("", endereco);
         }
 
-        //POST: api/Endereco/Remover
-        [HttpDelete]
-        [Route("Remover")]
+        //DELETE: api/Endereco/DeletarEndereco/id
+        [HttpDelete("{CepId}")]
+        [Route("DeletarEndereco/{CepId}")]
         public IActionResult Remover(int CepId)
         {
-           _enderecoDAO.Remover(CepId);
+            _enderecoDAO.Remover(CepId);
             return Ok();
-
         }
 
+
+        //PUT: api/Endereco/AlterarEndereco/id
+        [HttpPut("{CepId}")]
+        [Route("AlterarEndereco/{id}")]
+        public IActionResult Atualizar(int id, Endereco endereco)
+        {
+            _enderecoDAO.Atualizar(endereco, id);
+            return Ok();
+        }
     }
 }

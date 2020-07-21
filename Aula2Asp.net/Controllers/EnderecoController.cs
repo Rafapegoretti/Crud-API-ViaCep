@@ -43,17 +43,17 @@ namespace Aula2Asp.net.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpGet]
+        [HttpDelete]
         public IActionResult Remover(int id)
         {
             _enderecoDAO.Remover(id);
             return RedirectToAction("Index");
         }
 
-        [HttpGet]
-        public IActionResult Atualizar(Endereco endereco)
+        [HttpPut]
+        public IActionResult Atualizar(Endereco endereco, int id)
         {
-            _enderecoDAO.Atualizar(endereco);
+            _enderecoDAO.Atualizar(endereco, id);
             return RedirectToAction("Index");
         }
 

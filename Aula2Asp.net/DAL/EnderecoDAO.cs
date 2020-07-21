@@ -1,4 +1,5 @@
 ﻿using Aula2Asp.net.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,18 +32,19 @@ namespace Aula2Asp.net.DAL
             _context.SaveChanges();
         }
 
-        public void Atualizar(Endereco endereco)
+        public void Atualizar(Endereco endereco, int id)
         {
-            var enderecoAtt = _context.Enderecos.Where(e => e.CepId == endereco.CepId).FirstOrDefault();
+            var enderecoAtt = _context.Enderecos.Where(e => e.CepId == id).FirstOrDefault();
 
             enderecoAtt.Cep = endereco.Cep;
             enderecoAtt.Logradouro = endereco.Logradouro;
             enderecoAtt.Complemento = endereco.Complemento;
             enderecoAtt.Bairro = endereco.Bairro;
-            enderecoAtt.Localidade = endereco.Localidade;
+            enderecoAtt.Logradouro = endereco.Logradouro;
             enderecoAtt.Uf = endereco.Uf;
 
-            _context.SaveChanges();
+            _context.Entry(endereco).State = EntityState.Modified;
+            _context.SaveChangesAsync();
 
         }
     }
