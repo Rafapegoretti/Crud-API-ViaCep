@@ -27,6 +27,14 @@ namespace Aula2Asp.net.Controllers
             return Ok(_enderecoDAO.Listar());
         }
 
+        //GET: api/Endereco/ListarCepEspecifico
+        [HttpGet]
+        [Route("ListarEnderecos/{cep}")]
+        public IActionResult ListarEnderecos(string cep)
+        {
+            return Ok(_enderecoDAO.ListarEnderecos(cep));
+        }
+
         //POST: api/Endereco/CadastrarEndereco
         [HttpPost]
         [Route("CadastrarEndereco")]
@@ -51,7 +59,7 @@ namespace Aula2Asp.net.Controllers
         [Route("AlterarEndereco/{id}")]
         public IActionResult Atualizar(int id, Endereco endereco)
         {
-            _enderecoDAO.Atualizar(endereco, id);
+            _enderecoDAO.Atualizar(id, endereco);
             return Ok();
         }
     }

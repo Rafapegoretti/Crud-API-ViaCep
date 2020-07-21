@@ -25,6 +25,11 @@ namespace Aula2Asp.net.DAL
             return _context.Enderecos.ToList();
         }
 
+        public List<Endereco> ListarEnderecos(string cep)
+        {
+            return _context.Enderecos.Where(e => e.Cep == cep).ToList();
+        }
+
         public void Remover(int CepId)
         {
             Endereco endereco = _context.Enderecos.Find(CepId);
@@ -32,16 +37,15 @@ namespace Aula2Asp.net.DAL
             _context.SaveChanges();
         }
 
-        public void Atualizar(Endereco endereco, int id)
+        public void Atualizar(int id,Endereco endereco)
         {
             var enderecoAtt = _context.Enderecos.Where(e => e.CepId == id).FirstOrDefault();
 
-            enderecoAtt.Cep = endereco.Cep;
-            enderecoAtt.Logradouro = endereco.Logradouro;
-            enderecoAtt.Complemento = endereco.Complemento;
-            enderecoAtt.Bairro = endereco.Bairro;
-            enderecoAtt.Logradouro = endereco.Logradouro;
-            enderecoAtt.Uf = endereco.Uf;
+            endereco.Cep = enderecoAtt.Cep;
+            endereco.Complemento = enderecoAtt.Complemento;
+            endereco.Bairro = enderecoAtt.Bairro;
+            endereco.Logradouro = enderecoAtt.Logradouro;
+            endereco.Uf = enderecoAtt.Uf;
 
             _context.Entry(endereco).State = EntityState.Modified;
             _context.SaveChangesAsync();

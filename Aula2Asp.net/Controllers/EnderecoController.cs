@@ -51,9 +51,9 @@ namespace Aula2Asp.net.Controllers
         }
 
         [HttpPut]
-        public IActionResult Atualizar(Endereco endereco, int id)
+        public IActionResult Atualizar(int id, Endereco endereco)
         {
-            _enderecoDAO.Atualizar(endereco, id);
+            _enderecoDAO.Atualizar(id, endereco);
             return RedirectToAction("Index");
         }
 
