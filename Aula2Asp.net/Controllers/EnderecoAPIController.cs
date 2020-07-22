@@ -27,9 +27,9 @@ namespace Aula2Asp.net.Controllers
             return Ok(_enderecoDAO.Listar());
         }
 
-        //GET: api/Endereco/ListarCepEspecifico
+        //GET: api/Endereco/ListarEnderecos
         [HttpGet]
-        [Route("ListarEnderecos/{cep}")]
+        [Route("ListarEndereco/{cep}")]
         public IActionResult ListarEnderecos(string cep)
         {
             return Ok(_enderecoDAO.ListarEnderecos(cep));
@@ -55,7 +55,7 @@ namespace Aula2Asp.net.Controllers
 
 
         //PUT: api/Endereco/AlterarEndereco/id
-        [HttpPut("{CepId}")]
+        [HttpPut("{id}")]
         [Route("AlterarEndereco/{id}")]
         public IActionResult Atualizar(int id, Endereco endereco)
         {

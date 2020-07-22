@@ -39,16 +39,16 @@ namespace Aula2Asp.net.DAL
 
         public void Atualizar(int id,Endereco endereco)
         {
-            var enderecoAtt = _context.Enderecos.Where(e => e.CepId == id).FirstOrDefault();
-
-            endereco.Cep = enderecoAtt.Cep;
-            endereco.Complemento = enderecoAtt.Complemento;
-            endereco.Bairro = enderecoAtt.Bairro;
-            endereco.Logradouro = enderecoAtt.Logradouro;
-            endereco.Uf = enderecoAtt.Uf;
+            var enderecoAntigo = _context.Enderecos.Where(e => e.CepId == id).FirstOrDefault();
+            enderecoAntigo.Cep = endereco.Cep;
+            enderecoAntigo.Logradouro = endereco.Logradouro;
+            enderecoAntigo.Complemento = endereco.Complemento;
+            enderecoAntigo.Bairro = endereco.Bairro;
+            enderecoAntigo.Localidade = endereco.Localidade;
+            enderecoAntigo.Uf = endereco.Uf;
 
             _context.Entry(endereco).State = EntityState.Modified;
-            _context.SaveChangesAsync();
+            _context.SaveChanges();
 
         }
     }
