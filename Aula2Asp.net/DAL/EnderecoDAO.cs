@@ -40,6 +40,8 @@ namespace Aula2Asp.net.DAL
         public void Atualizar(int id,Endereco endereco)
         {
             var enderecoAntigo = _context.Enderecos.Where(e => e.CepId == id).FirstOrDefault();
+
+            enderecoAntigo.CepId = endereco.CepId;
             enderecoAntigo.Cep = endereco.Cep;
             enderecoAntigo.Logradouro = endereco.Logradouro;
             enderecoAntigo.Complemento = endereco.Complemento;
